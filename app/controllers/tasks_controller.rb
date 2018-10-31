@@ -13,7 +13,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to root_path, notice: 'Task was successfully created.'
     else
-      redirect_to root_path, notice: 'Could not Create Task, Try again!'      
+      redirect_to root_path, notice: "Could not create task: #{@task.errors.full_messages.join(', ')}"      
     end
   end
 
