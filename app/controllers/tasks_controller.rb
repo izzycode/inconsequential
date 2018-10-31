@@ -1,26 +1,31 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:destroy]
+  before_action :set_task, only: [:destroy, :update]
 
   # GET /tasks
   def index
     @tasks = Task.all
     @task = Task.new
   end
-  
+
   # POST /tasks
   def create
     @task = Task.new(task_params)
     if @task.save
       redirect_to root_path, notice: 'Task was successfully created.'
     else
-      redirect_to root_path, notice: "Could not create task: #{@task.errors.full_messages.join(', ')}"      
+      redirect_to root_path, notice: "Could not create task: #{@task.errors.full_messages.join(', ')}"
     end
+  end
+
+  def update
+    @task.update(completed: !@task.completed)
+    redirect_to root_path, notice: "Task was successfully updated."
   end
 
   # DELETE /tasks/1
   def destroy
     @task.destroy
-    redirect_to root_path, notice: 'Task was successfully destroyed.' 
+    redirect_to root_path, notice: 'Task was successfully destroyed.'
   end
 
   private

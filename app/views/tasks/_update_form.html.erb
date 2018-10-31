@@ -1,0 +1,5 @@
+<%= form_with(model: task) do |form| %>
+  <div class="actions">
+    <%= form.submit task.completed? ? "Mark Incomplete" : "Mark Complete", class: "btn btn-secondary float-right" %>
+  </div>
+<% end %>

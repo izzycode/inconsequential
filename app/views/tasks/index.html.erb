@@ -4,14 +4,21 @@
   <thead>
     <tr>
       <th>Description</th>
-      <th></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= task.description %></td>
+        <td>
+          <% if task.completed? %>
+            <s><%= task.description %></s>
+          <% else %>
+            <%= task.description %>
+          <% end %>
+        </td>
+        <td><%= render "update_form", task: task %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-right" %></td>
       </tr>
     <% end %>
