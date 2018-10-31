@@ -2,36 +2,25 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:destroy]
 
   # GET /tasks
-  # GET /tasks.json
   def index
     @tasks = Task.all
     @task = Task.new
   end
   
   # POST /tasks
-  # POST /tasks.json
   def create
     @task = Task.new(task_params)
-
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to root_path, notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
-      else
-        format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.save
+      redirect_to root_path, notice: 'Task was successfully created.'
+    else
+      redirect_to root_path, notice: 'Could not Create Task, Try again!'      
     end
   end
 
   # DELETE /tasks/1
-  # DELETE /tasks/1.json
   def destroy
     @task.destroy
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Task was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to root_path, notice: 'Task was successfully destroyed.' 
   end
 
   private
