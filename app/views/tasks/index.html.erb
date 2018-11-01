@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>Description</th>
-      <th colspan="2"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -18,8 +18,10 @@
             <%= task.description %>
           <% end %>
         </td>
-        <td><%= render "update_form", task: task %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-right" %></td>
+        <td>
+          <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-right ml-1" %>
+          <%= render "update_form", task: task %>
+        </td>
       </tr>
     <% end %>
   </tbody>
