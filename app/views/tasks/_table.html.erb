@@ -1,0 +1,27 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% tasks.each do |task| %>
+      <tr>
+        <td>
+          <% if task.completed? %>
+            <s>
+              <%= link_to task.description, task_sub_tasks_path(task) %>
+            </s>
+          <% else %>
+            <%= link_to task.description, task_sub_tasks_path(task) %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-right ml-1" %>
+          <%= render "update_form", task: task %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

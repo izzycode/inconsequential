@@ -6,7 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Task.find_or_create_by(description: "Learn Models")
+task = Task.find_or_create_by(description: "Learn Models")
+task.sub_tasks.find_or_create_by(description: "Learn Validations")
+task.sub_tasks.find_or_create_by(description: "Learn to use 'g'")
+
 Task.find_or_create_by(description: "Learn Controllers")
 Task.find_or_create_by(description: "Learn Views")
 Task.find_or_create_by(description: "Learn Migrations")
@@ -17,3 +20,4 @@ Task.find_or_create_by(description: "Learn HTML")
 Task.find_or_create_by(description: "Learn CSS")
 
 puts "#{Task.count} tasks in the system..."
+puts "#{SubTask.count} sub_tasks in the system..."
