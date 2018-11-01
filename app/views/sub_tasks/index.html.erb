@@ -1,0 +1,13 @@
+<h1>
+  <% if @task.completed? %>
+    <s><%= @task.description %></s>
+  <% else %>
+    <%= @task.description %>
+  <% end %>
+</h1>
+
+<%= render 'table', sub_tasks: @sub_tasks %>
+
+<hr>
+
+<%= render 'form', task: @task, sub_task: @sub_task %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'tasks#index'
-  resources :tasks, only: [:create, :destroy, :update]
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :tasks, only: [:create, :destroy, :update] do
+    resources :sub_tasks, only: [:index, :create, :update, :destroy], shallow: true
+  end
 end

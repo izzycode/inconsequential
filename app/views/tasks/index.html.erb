@@ -1,31 +1,6 @@
 <h1>Tasks</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td>
-          <% if task.completed? %>
-            <s><%= task.description %></s>
-          <% else %>
-            <%= task.description %>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-right ml-1" %>
-          <%= render "update_form", task: task %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'table', tasks: @tasks %>
 
 <hr>
 
