@@ -10,21 +10,22 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      redirect_to root_path(completed: params[:completed], due: params[:due]), notice: 'Task was successfully created.'
+      redirect_back fallback_location: root_path, notice: 'Task was successfully created.'
     else
-      redirect_to root_path(completed: params[:completed], due: params[:due]), notice: "Could not create task: #{@task.errors.full_messages.join(', ')}"
+      redirect_back fallback_location: root_path, notice: "Could not create task: #{@task.errors.full_messages.join(', ')}"
     end
   end
 
+  # PUT/PATCH /tasks/1
   def update
     @task.update(completed: !@task.completed)
-    redirect_to root_path(completed: params[:completed], due: params[:due]), notice: "Task was successfully updated."
+    redirect_back fallback_location: root_path, notice: "Task was successfully updated."
   end
 
   # DELETE /tasks/1
   def destroy
     @task.destroy
-    redirect_to root_path(completed: params[:completed], due: params[:due]), notice: 'Task was successfully destroyed.'
+    redirect_back fallback_location: root_path, notice: 'Task was successfully destroyed.'
   end
 
   private
@@ -40,21 +41,21 @@ class TasksController < ApplicationController
 
     def set_tasks
       @tasks  = case params[:completed]
-                when "true"
+                when "completed"
                   Task.completed.ordered
-                when "false"
+                when "pending"
                   Task.pending.ordered
                 else
                   Task.all.ordered
                 end
       @tasks  = case params[:due]
-                when "soon"
+                when "due_soon"
                   @tasks.due_soon
-                when "later"
+                when "due_later"
                   @tasks.due_later
-                when "past"
+                when "past_due"
                   @tasks.past_due
-                when "not"
+                when "not_due"
                   @tasks.not_due
                 else
                   @tasks

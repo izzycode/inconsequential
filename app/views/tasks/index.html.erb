@@ -1,21 +1,15 @@
-<h1>Tasks</h1>
+<h1><%= params[:completed]&.titleize || "All" %> Tasks</h1>
 
-<p>
-  <%= link_to root_path(completed: params[:completed], due: "past") do %>
-    <span class="badge badge-danger">Past Due</span>
-  <% end %>
-  <%= link_to root_path(completed: params[:completed], due: "later") do %>
-    <span class="badge badge-warning">Due Soon</span>
-  <% end %>
-  <%= link_to root_path(completed: params[:completed], due: "soon") do %>
-    <span class="badge badge-success">Due Later</span>
-  <% end %>
-  <%= link_to root_path(completed: params[:completed], due: "not") do %>
-    <span class="badge badge-secondary">Not Due</span>
-  <% end %>
-</p>
+<% if params[:due].present? %>
+  <h4>(<%= params[:due]&.titleize %>)</h4>
+<% end %>
+
+<%= render "due_menu" %>
+
 <%= render 'table', tasks: @tasks %>
 
 <hr>
 
-<%= render 'form', task: @task %>
+<% unless params[:completed] == "completed" %>
+  <%= render 'form', task: @task %>
+<% end %>
