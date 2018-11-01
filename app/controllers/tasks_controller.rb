@@ -10,21 +10,21 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      redirect_to root_path, notice: 'Task was successfully created.'
+      redirect_to root_path(completed: params[:completed], due: params[:due]), notice: 'Task was successfully created.'
     else
-      redirect_to root_path, notice: "Could not create task: #{@task.errors.full_messages.join(', ')}"
+      redirect_to root_path(completed: params[:completed], due: params[:due]), notice: "Could not create task: #{@task.errors.full_messages.join(', ')}"
     end
   end
 
   def update
     @task.update(completed: !@task.completed)
-    redirect_to root_path, notice: "Task was successfully updated."
+    redirect_to root_path(completed: params[:completed], due: params[:due]), notice: "Task was successfully updated."
   end
 
   # DELETE /tasks/1
   def destroy
     @task.destroy
-    redirect_to root_path, notice: 'Task was successfully destroyed.'
+    redirect_to root_path(completed: params[:completed], due: params[:due]), notice: 'Task was successfully destroyed.'
   end
 
   private
@@ -37,7 +37,7 @@ class TasksController < ApplicationController
     def task_params
       params.require(:task).permit(:description, :due_date)
     end
-    
+
     def set_tasks
       @tasks  = case params[:completed]
                 when "true"
@@ -46,6 +46,18 @@ class TasksController < ApplicationController
                   Task.pending.ordered
                 else
                   Task.all.ordered
-                end   
+                end
+      @tasks  = case params[:due]
+                when "soon"
+                  @tasks.due_soon
+                when "later"
+                  @tasks.due_later
+                when "past"
+                  @tasks.past_due
+                when "not"
+                  @tasks.not_due
+                else
+                  @tasks
+                end
     end
 end

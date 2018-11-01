@@ -1,5 +1,19 @@
 <h1>Tasks</h1>
 
+<p>
+  <%= link_to root_path(completed: params[:completed], due: "past") do %>
+    <span class="badge badge-danger">Past Due</span>
+  <% end %>
+  <%= link_to root_path(completed: params[:completed], due: "later") do %>
+    <span class="badge badge-warning">Due Soon</span>
+  <% end %>
+  <%= link_to root_path(completed: params[:completed], due: "soon") do %>
+    <span class="badge badge-success">Due Later</span>
+  <% end %>
+  <%= link_to root_path(completed: params[:completed], due: "not") do %>
+    <span class="badge badge-secondary">Not Due</span>
+  <% end %>
+</p>
 <%= render 'table', tasks: @tasks %>
 
 <hr>
