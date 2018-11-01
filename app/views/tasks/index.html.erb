@@ -1,7 +1,7 @@
 <h1><%= params[:completed]&.titleize || "All" %> Tasks</h1>
 
 <% if params[:due].present? %>
-  <h4>(<%= params[:due]&.titleize %>)</h4>
+  <h4>(<%= params[:due].titleize %>)</h4>
 <% end %>
 
 <%= render "due_menu" %>
