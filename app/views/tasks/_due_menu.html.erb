@@ -1,0 +1,14 @@
+<p>
+  <%= link_to root_path(completed: params[:completed], due: "past_due") do %>
+    <span class="badge badge-danger">Past Due</span>
+  <% end %>
+  <%= link_to root_path(completed: params[:completed], due: "due_soon") do %>
+    <span class="badge badge-warning">Due Soon</span>
+  <% end %>
+  <%= link_to root_path(completed: params[:completed], due: "due_later") do %>
+    <span class="badge badge-success">Due Later</span>
+  <% end %>
+  <%= link_to root_path(completed: params[:completed], due: "not_due") do %>
+    <span class="badge badge-secondary">Not Due</span>
+  <% end %>
+</p>
