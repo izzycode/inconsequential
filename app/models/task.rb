@@ -4,4 +4,5 @@ class Task < ApplicationRecord
 
   scope :completed, -> { where(completed: true) }
   scope :pending, -> { where(completed: false) }
+  scope :ordered, -> { order(due_date: :asc) }
 end

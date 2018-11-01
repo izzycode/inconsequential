@@ -10,9 +10,15 @@ task = Task.find_or_create_by(description: "Learn Models")
 task.sub_tasks.find_or_create_by(description: "Learn Validations")
 task.sub_tasks.find_or_create_by(description: "Learn to use 'g'")
 
-Task.find_or_create_by(description: "Learn Controllers")
-Task.find_or_create_by(description: "Learn Views")
-Task.find_or_create_by(description: "Learn Migrations")
+task = Task.find_or_create_by(description: "Learn Controllers")
+task.update(due_date: 2.days.ago.to_date)
+
+task = Task.find_or_create_by(description: "Learn Views")
+task.update(due_date: 2.days.from_now.to_date)
+
+task = Task.find_or_create_by(description: "Learn Migrations")
+task.update(due_date: 1.week.from_now.to_date)
+
 Task.find_or_create_by(description: "Learn Git")
 Task.find_or_create_by(description: "Learn React")
 Task.find_or_create_by(description: "Learn JavaScript")

@@ -35,17 +35,17 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:description)
+      params.require(:task).permit(:description, :due_date)
     end
     
     def set_tasks
       @tasks  = case params[:completed]
                 when "true"
-                  Task.completed
+                  Task.completed.ordered
                 when "false"
-                  Task.pending
+                  Task.pending.ordered
                 else
-                  Task.all
+                  Task.all.ordered
                 end   
     end
 end
