@@ -39,13 +39,13 @@ class TasksController < ApplicationController
     end
     
     def set_tasks
-    @tasks = case params[:completed]
-      when "true"
-        Task.completed
-      when "false"
-        Task.pending
-      else
-        Task.all
-      end   
+      @tasks  = case params[:completed]
+                when "true"
+                  Task.completed
+                when "false"
+                  Task.pending
+                else
+                  Task.all
+                end   
     end
 end
