@@ -4,7 +4,9 @@
   <h4>(<%= params[:due].titleize %>)</h4>
 <% end %>
 
-<%= render "due_menu" %>
+<%= render 'due_menu' %>
+
+<%= render 'search_form' %>
 
 <%= render 'table', tasks: @tasks %>
 

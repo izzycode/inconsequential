@@ -1,0 +1,10 @@
+<%= form_with(url: root_path, method: :get, local: true) do |form| %>
+  <%= form.hidden_field :completed, value: params[:completed] %>
+  <%= form.hidden_field :due, value: params[:due] %>
+  <div class="form-group">
+    <%= form.search_field :term,
+        class: "form-control",
+        placeholder: "Search",
+        value: params[:term] %>
+  </div>
+<% end %>
