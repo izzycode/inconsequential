@@ -9,6 +9,7 @@ class Task < ApplicationRecord
   scope :past_due, -> { where("due_date < ?", Date.today) }
   scope :due_later, -> { where("due_date >= ?", 1.week.from_now.to_date) }
   scope :due_soon, -> { where("due_date > ? and due_date < ?", Date.today, 1.week.from_now.to_date) }
+  scope :search, -> (term) { where("description ilike ?", "%#{term}%") }
 
   def due_soon?
     due_date && due_date >= Date.today && due_date < 1.week.from_now.to_date
