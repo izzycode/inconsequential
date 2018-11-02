@@ -17,11 +17,11 @@
           <% else %>
             <%= link_to task.description, task_sub_tasks_path(task) %>
           <% end %>
-          <td>
-            <span class="<%= badge_class_for(task) %>">
-              <%=task.due_date&.strftime('%-m/%-d/%y')%>
-            </span>
-          </td>
+        </td>
+        <td>
+          <span class="<%= badge_class_for(task) %>">
+            <%=task.due_date&.strftime('%-m/%-d/%y')%>
+          </span>
         </td>
         <td>
           <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-right ml-1" %>
