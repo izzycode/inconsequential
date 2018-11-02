@@ -12,10 +12,10 @@
         <td>
           <% if task.completed? %>
             <s>
-              <%= link_to task.description, task_sub_tasks_path(task) %>
+              <%= link_to task.description.truncate(50), task_sub_tasks_path(task) %>
             </s>
           <% else %>
-            <%= link_to task.description, task_sub_tasks_path(task) %>
+            <%= link_to task.description.truncate(50), task_sub_tasks_path(task) %>
           <% end %>
         </td>
         <td>

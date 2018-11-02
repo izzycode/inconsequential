@@ -25,5 +25,15 @@ Task.find_or_create_by(description: "Learn JavaScript")
 Task.find_or_create_by(description: "Learn HTML")
 Task.find_or_create_by(description: "Learn CSS")
 
+100.times do
+  t = Task.new(
+        description: Faker::ChuckNorris.fact,
+        due_date: Faker::Date.between(3.months.ago, 3.months.from_now),
+        completed: [true, false].sample
+      )
+  t.due_date = nil if [true, false, false].sample
+  t.save
+end
+
 puts "#{Task.count} tasks in the system..."
 puts "#{SubTask.count} sub_tasks in the system..."
