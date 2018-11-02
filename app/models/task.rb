@@ -11,7 +11,7 @@ class Task < ApplicationRecord
   scope :due_soon, -> { where("due_date > ? and due_date < ?", Date.today, 1.week.from_now.to_date) }
 
   def due_soon?
-    due_date && due_date.future? && due_date < 1.week.from_now.to_date
+    due_date && due_date >= Date.today && due_date < 1.week.from_now.to_date
   end
 
   def due_later?
