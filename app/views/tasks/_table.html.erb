@@ -11,11 +11,9 @@
       <tr>
         <td>
           <% if task.completed? %>
-            <s>
-              <%= link_to task.description.truncate(50), task_sub_tasks_path(task) %>
-            </s>
+            <s><%= task.description %></s>
           <% else %>
-            <%= link_to task.description.truncate(50), task_sub_tasks_path(task) %>
+            <%= task.description %>
           <% end %>
         </td>
         <td>
@@ -24,8 +22,7 @@
           </span>
         </td>
         <td>
-          <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-right ml-1" %>
-          <%= render "update_form", task: task %>
+          <%= link_to "Details", task_sub_tasks_path(task), class: 'btn btn-info' %>
         </td>
       </tr>
     <% end %>
