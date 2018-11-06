@@ -29,13 +29,16 @@
           <a 
             class="nav-item nav-link 
             <%= params[:completed] == 'completed' ? 'active' : ''%>" 
-            href="<%= root_path(completed: "completed") %>">Completed
+            href="<%= root_path(completed: "completed") %>"
+          >
+            Completed
           </a>
           <a 
             class="nav-item nav-link 
             <%= params[:completed] == 'pending' ? 'active' : ''%>" 
-            href="<%= root_path(completed: "completed") %>" 
-            href="<%= root_path(completed: "pending") %>">Pending
+            href="<%= root_path(completed: "pending") %>" 
+          >
+            Pending
           </a>
         </div>
       </div>
